@@ -59,7 +59,7 @@ class LoginPage extends HTMLElement {
                 const response = await api.post('/auth/login', { usuario, senha });
                 login(response.access_token, response.user);
                 toast('Login realizado com sucesso!', 'success');
-                document.querySelector('ion-router').push('/home', 'forward');
+                    document.querySelector('ion-nav').push('home-page', {}, 'forward');
             } catch (error) {
                 toast('Usuário ou senha incorretos!');
             }

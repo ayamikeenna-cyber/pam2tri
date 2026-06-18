@@ -8,7 +8,7 @@ const pageName = 'Home';
 class HomePage extends HTMLElement {
     connectedCallback() {
         if (!isAuthenticated()) {
-            document.querySelector('ion-router').push('/login', 'root');
+            document.querySelector('ion-nav').push('login-page', {}, 'root');
             return;
         }
         this.classList.add('ion-page');

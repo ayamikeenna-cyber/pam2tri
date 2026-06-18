@@ -40,11 +40,18 @@ const createAndInjectionMenu = () => {
     menu.querySelectorAll('.menu-item').forEach(item => {
         item.addEventListener('click', async () => {
             const url = item.dataset.url;
-            const router = document.querySelector('ion-router');
+            const nav = document.querySelector('ion-nav');
 
-            // Verificando se a rota existe e se é a mesma página
-            if (router && window.location.hash.substring(1) !== url)
-                router.push(url, 'root')
+            const routeMap = {
+                '/home': 'home-page',
+                '/produto/list': 'list-produto-page',
+                '/usuario/list': 'list-usuario-page',
+                '/mesa': 'list-mesa-page'
+            };
+
+            const component = routeMap[url];
+            if (nav && component)
+                nav.push(component, {}, 'root');
 
             await menu.close();
         })
