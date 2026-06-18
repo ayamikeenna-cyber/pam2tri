@@ -59,9 +59,9 @@ export function createHeader(pageName) {
     if (pageName !== 'Login')
         createAndInjectionMenu();
 
-    const logout = pageName !== 'Login' ?
+    const logoutButtonHtml = pageName !== 'Login' ?
     `<ion-buttons slot="end">
-        <ion-button id="logout-btn" onclick="logout()">
+        <ion-button id="logout-btn">
             <ion-icon name="log-out-outline" slot="icon-only">
             </ion-icon>
         </ion-button>
@@ -79,7 +79,7 @@ export function createHeader(pageName) {
             <ion-toolbar color="secondary">
                 ${start}
                 <ion-title>Quero Café Bar - ${pageName}</ion-title>
-                ${logout}
+                ${logoutButtonHtml}
             </ion-toolbar>
         </ion-header>
     `;

@@ -1,7 +1,8 @@
 import './CadUsuarioPage.css'
 import { createHeader } from '../../shared/Header.js'
-import { logout } from '../../shared/util.js';
+import { logout, toast } from '../../shared/util.js';
 import { isAuthenticated } from '../../shared/auth.js';
+import { api } from '../../shared/api.js';
 
 const pageName = 'Cadastrar Usuario';
 
@@ -55,7 +56,38 @@ class CadUsuarioPage extends HTMLElement {
         .addEventListener('click', logout);
         this.querySelector('#btn-cancelar').addEventListener('click',
             
-            () =>  windows.history.back());
+            () =>  window.history.back());
+
+        const formUsuario = this.querySelector('#form-usuario');
+        formUsuario.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(formUsuario);
+            const userData = {};
+            for (let [key, value] of formData.entries()) {
+                userData[key] = value;
+            }
+
+            if (userData.perfil) {
+                userData.perfil = parseInt(userData.perfil, 10);
+            }
+
+            const loading = document.createElement('ion-loading');
+            loading.message = 'Salvando usuário...';
+            document.body.appendChild(loading);
+            await loading.present();
+
+            try {
+                await api.post('/usuario', userData);
+                toast('Usuário salvo com sucesso!', 'success');
+                document.querySelector('ion-router').push('/home', 'forward'); // Adjust as needed
+            } catch (error) {
+                console.error('Erro ao salvar usuário:', error);
+                toast('Erro ao salvar usuário.', 'danger');
+            } finally {
+                await loading.dismiss();
+            }
+        });
     }
 }
 

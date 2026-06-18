@@ -1,13 +1,7 @@
 import './style.css'
 
 // IONIC IMPORT
-// Load Ionic
-(async () => {
-  // Set the path to a variable to
-  // prevent Vite from analyzing in dev
-  const ionicPath = '/ionic.esm.js';
-  await import(/* @vite-ignore */ ionicPath);
-})();
+import '@ionic/core';
 
 // Core CSS required for Ionic components to work properly
 import '@ionic/core/css/core.css';
@@ -39,7 +33,4 @@ import './pages/usuario/ListUsuarioPage.js';
 import './pages/usuario/CadUsuarioPage.js';
 import './pages/usuario/EditUsuarioPage.js';
 
-// MESA
-import './pages/mesa/ListMesaPage.js';
-import './pages/mesa/CadMesaPage.js';
-import './pages/mesa/EditMesaPage.js';
+
