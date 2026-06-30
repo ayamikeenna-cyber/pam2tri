@@ -65,6 +65,7 @@ class EditMesaPage extends HTMLElement {
             }
 
             const dados = {
+                id: parseInt(id),
                 qtd_cadeiras: parseInt(qtd_cadeiras),
                 status: parseInt(status) === 1
             };

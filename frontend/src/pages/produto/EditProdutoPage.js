@@ -67,6 +67,7 @@ class EditProdutoPage extends HTMLElement {
             }
 
             const dados = {
+                id: parseInt(id),
                 dsc_produto,
                 valor_unit: parseFloat(valor_unit),
                 status

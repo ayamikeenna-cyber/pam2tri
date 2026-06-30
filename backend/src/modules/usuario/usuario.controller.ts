@@ -31,7 +31,7 @@ export class UsuarioController {
     }
 
     @Get('perfil/:perfil')
-    async findByPerfil(@Param('perfil') perfil: number): Promise<IUsuarioOutput> {
+    async findByPerfil(@Param('perfil') perfil: number): Promise<IUsuarioOutput[]> {
         return await this.usuarioService.findByPerfil(perfil);
     }
 
